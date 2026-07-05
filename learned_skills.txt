@@ -1,0 +1,4 @@
+-llm and its parameters
+-llm call with langchain
+-uv package manager
+-document loader
