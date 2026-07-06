@@ -1,4 +1,8 @@
 -llm and its parameters
--llm call with langchain
+-llm call with langchain and with SDK
 -uv package manager
 -document loader
+-embedding model : Hugging Face
+-chat model : groq cloud
+- rag we have tow phases: the indexing and the querting
+-chroma db
