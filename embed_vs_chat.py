@@ -1,7 +1,8 @@
 import os
 from dotenv import load_dotenv
 from groq import Groq
-from openai import OpenAI
+from huggingface_hub import InferenceClient
+
 load_dotenv()  
 
 def chat():
@@ -19,15 +20,20 @@ def chat():
     print(conversation.choices[0].message)
 
 def embedding():
-    client= OpenAI(
-        api_key=os.getenv("OPENAI_API_KEY"),
+    client = InferenceClient(
+        provider="hf-inference",
+        api_key=os.getenv("HF_API_KEY")
     )
-    response = client.embeddings.create(
-        model="text-embedding-3-large",
-        input="Hello, world!"       
+
+    embedding = client.feature_extraction(
+        "Hello world from other side!",
+        model="sentence-transformers/all-MiniLM-L6-v2"
     )
-    print("Embedding from Groq SDK:")
-    print(response.data[0].embedding)
+    print("Embedding from Hugging Face Inference API:")
+    print(embedding)
+    print(len(embedding)) #384 dimmension for any sentence
+
+
 
 if __name__ == "__main__":
     #chat() 
