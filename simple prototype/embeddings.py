@@ -2,6 +2,8 @@ import os
 from langchain_huggingface import HuggingFaceEndpointEmbeddings
 import chromadb
 from langchain_chroma import Chroma
+from langchain_groq import ChatGroq
+from langchain_core.prompts import ChatPromptTemplate
 
 client = chromadb.CloudClient(
         api_key='ck-Fx3PHuVGmyASkJ7cwZBwTcswwxnpvH6TPWLTa1d52UAE',
@@ -27,11 +29,6 @@ def chunksToEmbeddings(chunks):
         collection_name="database_rag"
     )
     return embeddings
-from langchain_chroma import Chroma
-from langchain_huggingface import HuggingFaceEndpointEmbeddings
-from langchain_groq import ChatGroq
-from langchain_core.prompts import ChatPromptTemplate
-import os
 
 
 def ragResponse(query):
