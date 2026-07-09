@@ -6,8 +6,9 @@ def LoadAndChunk(path):
     documents=loader.load()
 
     text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=250,
-        chunk_overlap=40
+        chunk_size=1000,
+        chunk_overlap=200
     )
     chunks = text_splitter.split_documents(documents)
+    print(f"Number of chunks: {len(chunks)}")
     return chunks
