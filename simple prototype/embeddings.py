@@ -26,7 +26,13 @@ def chunksToEmbeddings(chunks):
         documents=chunks,
         embedding=embeddings,
         client=client,
-        collection_name="database_rag"
+        collection_name="database_rag",
+        collection_metadata={
+        "hnsw:space": "cosine",         # Distance metric used for similarity search (cosine, l2, or ip)
+        "hnsw:M": 32,                   # Maximum number of neighbor connections per node (higher = better recall, more memory)
+        "hnsw:construction_ef": 400,    # Search effort during index construction (higher = better graph quality, slower indexing)
+        "hnsw:search_ef": 100,          # Search effort during queries (higher = better recall, slower search)
+        }
     )
     return embeddings
 
