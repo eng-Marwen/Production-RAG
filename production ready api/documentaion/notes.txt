@@ -1,0 +1,37 @@
+### security.py
+
+
+SYSTEM INSTRUCTIONS
+-------------------
+You are a helpful assistant.
+
+USER QUESTION
+-------------
+Explain Python.
+
+CONTEXT
+-------
+Python is a programming language.
+
+Common prompt sections:
+
+System section → Defines the AI's role, rules, and behavior.
+User section → Contains the user's request or question.
+Context section → Contains additional information (for example, retrieved RAG documents).
+Instructions section → Gives specific tasks the AI should perform.
+Examples section → Shows examples of expected input/output.
+Output format section → Specifies how the answer should be structured.
+
+Separators like --- or === are often used to visually distinguish these sections,
+Instruction injection-Delimiter injection
+{{ }} → A template syntax used to insert variables that can be abused to execute or expose data.
+An attacker sends:
+
+{{ config.SECRET_KEY }}
+
+If the application renders it, the engine may execute it and expose:
+
+SECRET_KEY=abc123
+
+This is called:
+Server-Side Template Injection (SSTI)
