@@ -5,7 +5,7 @@ validates them with Pydantic, and provides one shared
 configuration object for the entire application.instead of each time os.getenv.
 """
 
-from pydantic import BaseSettings   # Base class for loading and validating environment variables.
+from pydantic_settings import BaseSettings   # Base class for loading and validating environment variables.
 from functools import lru_cache     # Caches the Settings object so it is created only once.
 
 class Settings(BaseSettings):
@@ -13,6 +13,7 @@ class Settings(BaseSettings):
 
     # LLM Configuration
     groq_api_key: str
+    gemini_api_key: str
     primary_model: str = "llama-3.3-70b-versatile"
     fallback_model: str = "llama-3.3-70b-versatile" #standby
 
@@ -48,4 +49,6 @@ def get_settings() -> Settings:
     return Settings()   # Load, validate, and return the configuration.
 
 """lru = last recently used cache. if we call get_settings() multiple times, 
-it will return the same instance(cached)."""
+it will return the same instance(cached).
+
+"""
