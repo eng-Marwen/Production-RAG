@@ -24,6 +24,7 @@ class ChatRequest(BaseModel):
         default="default",
         description="The thread ID for the conversation."
     )
+
 class ChatResponse(BaseModel):
     response:str
     thread_id:str
@@ -38,6 +39,7 @@ class HealthCheckResponse(BaseModel):
     environment:str
     version:str
     checks:dict={}
+
 class MetricsResponse(BaseModel):
     """Metrics response model."""
     total_requests:int
