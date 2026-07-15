@@ -23,6 +23,7 @@ Examples section → Shows examples of expected input/output.
 Output format section → Specifies how the answer should be structured.
 
 Separators like --- or === are often used to visually distinguish these sections,
+TODO:Server-Side Template Injection (SSTI)TODO:
 Instruction injection-Delimiter injection
 {{ }} → A template syntax used to insert variables that can be abused to execute or expose data.
 An attacker sends:
@@ -34,4 +35,29 @@ If the application renders it, the engine may execute it and expose:
 SECRET_KEY=abc123
 
 This is called:
-Server-Side Template Injection (SSTI)
+TODO: Server-Side Template Injection (SSTI) TODO:
+
+TODO: based regex
+| Regex    | Meaning                                           | Example Match                 |       |      |
+| -------- | ------------------------------------------------- | ----------------------------- | ----- | ---- |
+| `.`      | Any character                                     | `a`, `7`, `@`                 |       |      |
+| `\d`     | Digit                                             | `5`                           |       |      |
+| `\D`     | Not a digit                                       | `A`                           |       |      |
+| `\w`     | Word character                                    | `hello`, `_`, `7`             |       |      |
+| `\W`     | Non-word character                                | `@`, `-`                      |       |      |
+| `\s`     | Whitespace                                        | Space, tab, newline           |       |      |
+| `\S`     | Non-whitespace                                    | `A`, `9`                      |       |      |
+| `[abc]`  | One of `a`, `b`, or `c`                           | `b`                           |       |      |
+| `[^abc]` | Anything except `a`, `b`, or `c`                  | `x`                           |       |      |
+| `*`      | Zero or more                                      | `ab*` → `a`, `ab`, `abb`      |       |      |
+| `+`      | One or more                                       | `ab+` → `ab`, `abb`           |       |      |
+| `?`      | Zero or one (or lazy modifier after a quantifier) | `colou?r` → `color`, `colour` |       |      |
+| `{n}`    | Exactly `n` repetitions                           | `\d{4}`                       |       |      |
+| `{n,m}`  | Between `n` and `m` repetitions                   | `\d{2,5}`                     |       |      |
+| `^`      | Start of string (or negation inside `[]`)         | `^Hello`                      |       |      |
+| `$`      | End of string                                     | `world$`                      |       |      |
+| `\b`     | Word boundary                                     | `\bcat\b`                     |       |      |
+| `        | `                                                 | OR                            | `cat  | dog` |
+| `()`     | Capturing group                                   | `(cat                         | dog)` |      |
+| `(?:)`   | Non-capturing group                               | `(?:cat                       | dog)` |      |
+| `(?i)`   | Ignore case                                       | Matches `HELLO` and `hello`   |       |      |
