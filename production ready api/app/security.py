@@ -139,7 +139,7 @@ class OutputValidator:
     """
     HARMFUL_PATTERNS = [
         re.compile(r"(?i)\b(?:hack|exploit|malware|virus|trojan|steal)\b"),
-        re.compile(r"(?i)\b(?:password|secret|token|key|api key|private key|access token)\b"),
+        re.compile(r"(?i)\b(?:password|secret|private key|access token)\b"),
         re.compile(r"(?i)\b(?:credit card|ssn|social security number)\b"),
     ]
 
