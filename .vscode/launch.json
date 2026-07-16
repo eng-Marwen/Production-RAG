@@ -8,6 +8,25 @@
             "program": "${file}",
             "cwd": "${fileDirname}",
             "console": "integratedTerminal"
+        },
+        {
+            "name": "Uvicorn: Production RAG API",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "uvicorn",
+            "args": [
+                "app.main:app",
+                "--host",
+                "127.0.0.1",
+                "--port",
+                "8000"
+            ],
+            "cwd": "${workspaceFolder}/production ready api",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}/production ready api"
+            },
+            "console": "integratedTerminal",
+            "justMyCode": true
         }
     ]
 }
