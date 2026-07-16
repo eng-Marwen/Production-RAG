@@ -1,6 +1,8 @@
 """API request and response models.
 pydantic models for input validation
 """
+from typing import Optional
+
 from pydantic import BaseModel, Field, field_validator 
 from datetime import datetime, timezone
 
@@ -37,8 +39,8 @@ class HealthCheckResponse(BaseModel):
     """Health check response model."""
     status:str="Healthy"
     environment:str
-    version:str
-    checks:dict={}
+    version:Optional[str]="1.0.0"
+    checks:dict
 
 class MetricsResponse(BaseModel):
     """Metrics response model."""
