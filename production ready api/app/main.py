@@ -48,7 +48,7 @@ async def lifespan(app: FastAPI):
             }
         },
     )
-
+    global secutity, metrics, cache, agent  # declare as global to modify the outer scope
     # initialize components
     secutity = SecurityLayer()
     metrics = MetricsCollector()
@@ -66,7 +66,7 @@ async def lifespan(app: FastAPI):
 
 
 # Rate limiter setup
-limiter = Limiter(key_func=get_remote_address)
+limiter = Limiter(key_func=get_remote_address, headers_enabled=True)
 
 # FastAPI app initialization
 app = FastAPI(
@@ -76,6 +76,7 @@ app = FastAPI(
     description="A production-ready RAG API with security, monitoring, and caching features.",
 )
 app.state.limiter = limiter
+app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 # ===========================
 # ENDPOINTS
@@ -84,7 +85,7 @@ app.state.limiter = limiter
 
 @app.post("/chat", response_model=ChatResponse)
 @limiter.limit(settings.rate_limit)
-@traceable(project_name="chat_endpoint")
+@traceable(name="chat_endpoint", run_type="chain", enabled=settings.langsmith_tracing)
 async def chat_endpoint(request: Request, chat_request: ChatRequest):
     """
     Main flow:
